@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>APT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #14201c;
+        --mist: #e8f0eb;
+        --leaf: #2f6b4f;
+        --glow: #b7d4c4;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        font-family: "Instrument Sans", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 15% 20%, rgba(183, 212, 196, 0.55), transparent 42%),
+          radial-gradient(circle at 85% 10%, rgba(47, 107, 79, 0.18), transparent 35%),
+          linear-gradient(160deg, #f7fbf8 0%, #dfece4 55%, #c9ddd2 100%);
+        display: grid;
+        place-items: center;
+        padding: 2rem;
+      }
+
+      main {
+        width: min(720px, 100%);
+        animation: rise 700ms ease-out both;
+      }
+
+      .brand {
+        font-size: clamp(3rem, 8vw, 5.5rem);
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        line-height: 0.95;
+        margin-bottom: 1.25rem;
+      }
+
+      h1 {
+        font-family: "Newsreader", Georgia, serif;
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        font-weight: 500;
+        line-height: 1.2;
+        max-width: 16ch;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.05rem;
+        line-height: 1.65;
+        max-width: 38ch;
+        opacity: 0.9;
+        margin-bottom: 1.75rem;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.85rem 1.25rem;
+        border-radius: 999px;
+        background: var(--ink);
+        color: var(--mist);
+        text-decoration: none;
+        font-weight: 600;
+        transition: transform 180ms ease, background 180ms ease;
+      }
+
+      .cta:hover {
+        transform: translateY(-2px);
+        background: var(--leaf);
+      }
+
+      .note {
+        margin-top: 2.5rem;
+        font-size: 0.9rem;
+        opacity: 0.7;
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="brand">APT</div>
+      <h1>Building clear work, one page at a time.</h1>
+      <p>
+        This is the first page on the APT GitHub repo — a simple starting point
+        you can grow into a full site, demo, or project hub.
+      </p>
+      <a class="cta" href="https://github.com/johnson-codes/apt" target="_blank" rel="noreferrer">
+        View on GitHub →
+      </a>
+      <p class="note">Pushed from Cursor · August 20, 2026</p>
+    </main>
+  </body>
+</html>
