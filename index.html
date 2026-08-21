@@ -1341,6 +1341,9 @@
       }
       .nav-links { margin-left: auto; }
       .nav-call {
+        display: inline-flex;
+        align-items: center;
+        gap: .55rem;
         padding: .72rem 1rem;
         border: 0;
         border-radius: .3rem;
@@ -1355,6 +1358,16 @@
         text-decoration: none!important;
         transform: translateY(-1px);
       }
+      .phone-icon {
+        width: 1.35rem;
+        height: 1.35rem;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(255,255,255,.18);
+        font-size: .82rem;
+        line-height: 1;
+      }
       .team__head,
       .guide-head {
         display: block;
@@ -1362,6 +1375,135 @@
       .team__head h2,
       .guide-head h2 {
         max-width: 15ch;
+      }
+
+      /* —— Vehicle-make logo rail —— */
+      .logo-rail {
+        position: relative;
+        overflow: hidden;
+        padding: 1.55rem 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        background: #fff;
+      }
+      .logo-rail__viewport {
+        overflow: hidden;
+        mask-image: linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+      }
+      .logo-rail__track {
+        display: flex;
+        width: max-content;
+        animation: logoMarquee 28s linear infinite;
+      }
+      .logo-rail:hover .logo-rail__track { animation-play-state: paused; }
+      .logo-group {
+        display: flex;
+        align-items: center;
+        gap: clamp(2.6rem,6vw,5.5rem);
+        padding-right: clamp(2.6rem,6vw,5.5rem);
+      }
+      .logo-item {
+        width: 9rem;
+        height: 3rem;
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+        opacity: .72;
+        transition: opacity .2s ease,transform .2s ease;
+      }
+      .logo-item:hover { opacity: 1; transform: scale(1.06); }
+      .logo-item img { width: auto; max-width: 100%; height: 2.65rem; object-fit: contain; }
+      @keyframes logoMarquee { to { transform: translateX(-50%); } }
+      @media (prefers-reduced-motion:reduce) {
+        .logo-rail__track { animation:none; }
+        .logo-rail__viewport { overflow-x:auto; mask-image:none; }
+      }
+      @media (max-width:640px) {
+        .logo-item { width: 7rem; height:2.6rem; }
+        .logo-item img { height:2.25rem; }
+        .logo-group { gap: 2rem; padding-right: 2rem; }
+      }
+
+      /* —— Full-page scanability pass —— */
+      section[id] { scroll-margin-top: 4.75rem; }
+      body { line-height: 1.6; }
+      .hero { height: min(800px,100svh); min-height: 720px; }
+      .hero__content { padding-top: 7rem; padding-bottom: 3rem; }
+      .hero h1 { max-width: 9ch; font-size: clamp(3rem,5.4vw,4.8rem); }
+      .hero .lead { max-width: 38ch; line-height: 1.55; }
+
+      section:not(.hero):not(.logo-rail) .eyebrow {
+        margin-bottom: 1.15rem;
+      }
+      section:not(.hero):not(.logo-rail) h2 {
+        max-width: 14ch;
+        margin-bottom: .9rem;
+        font-size: clamp(2.1rem,3.4vw,3.15rem);
+      }
+      section:not(.hero):not(.logo-rail) .lead {
+        max-width: 46ch;
+        font-size: 1rem;
+        line-height: 1.55;
+      }
+
+      .struggle__copy { padding: clamp(3.5rem,5vw,4.75rem) clamp(2rem,6vw,6rem); }
+      .struggle__visual { min-height: 480px; }
+      .pain { margin-top: 1.15rem; }
+      .pain p { min-height: 3.4rem; padding-block: .75rem; }
+
+      .who .wrap--offset,
+      .team,
+      .guide,
+      .reviews { padding-block: clamp(3.75rem,6vw,5.25rem); }
+      .who .lead { margin-bottom: 0; }
+      .who-points { margin-top: 1.8rem; padding-top: 1.5rem; }
+      .who-points > div { min-height: 0; padding: 1.25rem; }
+      .feature-icon,.step-icon { width: 2.45rem; height: 2.45rem; margin-bottom: 1rem; }
+
+      .team__head,.guide-head {
+        max-width: 52rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1.4rem;
+      }
+      .team-grid,.path { gap: .85rem; }
+      .team-photo { aspect-ratio: 5 / 3; }
+      .team-card__body,.path article { padding: 1.2rem; }
+      .team-role { margin-bottom: .55rem; }
+      .team-card h3,.path h3 { margin-bottom: .4rem; font-size: 1.3rem; }
+      .team-card p,.path p,.who-points p { font-size: .94rem; line-height: 1.48; }
+      .team-card__link { margin-top: .9rem; }
+
+      .guide .wrap--narrow { margin-bottom: 0; }
+      .path article { min-height: 230px; }
+      .path .num { margin-bottom: .65rem; }
+
+      .reviews .wrap--narrow { gap: clamp(2rem,5vw,4.5rem); }
+      .reviews .quotes { gap: .85rem; }
+      .quotes blockquote { padding: 1.4rem; font-size: clamp(1.05rem,1.7vw,1.25rem); line-height: 1.45; }
+      .quote-head { margin-bottom: .75rem; }
+      .quote-avatar { width: 2.4rem; height: 2.4rem; }
+      .quotes cite { margin-top: .7rem; }
+
+      .offer { padding-block: clamp(3rem,5vw,4.25rem); }
+      .offer-band { padding: 1.75rem 2rem; }
+      .offer-note { margin-top: 1rem; padding-top: 1rem; }
+
+      @media (max-width:960px) {
+        .hero { height:auto; min-height:0; }
+        .team__head,.guide-head { max-width: 42rem; }
+        .team-card { grid-template-columns: 220px 1fr; }
+        .team-photo { min-height: 260px; aspect-ratio:auto; }
+        .path article { min-height:0; }
+      }
+      @media (max-width:640px) {
+        .hero__content { padding-top: 6.5rem; }
+        .hero h1 { font-size: clamp(2.65rem,13vw,3.65rem); }
+        section:not(.hero):not(.logo-rail) h2 { font-size: clamp(2rem,10vw,2.7rem); }
+        .struggle__visual { min-height:260px; }
+        .struggle__copy { padding-block:3rem; }
+        .team-card { grid-template-columns:1fr; }
+        .team-photo { min-height:0; aspect-ratio:5 / 3; }
+        .offer-band { padding:1.35rem; }
       }
     </style>
   </head>
@@ -1371,7 +1513,7 @@
         <div class="wrap">
           <a class="nav-brand" href="#top">APT <small>Auto Parts</small></a>
           <nav class="nav-links" aria-label="Call APT Auto Parts">
-            <a class="nav-call" href="tel:18664260666">1-866-426-0666</a>
+            <a class="nav-call" href="tel:18664260666"><span class="phone-icon" aria-hidden="true">☎</span>1-866-426-0666</a>
           </nav>
         </div>
       </div>
@@ -1455,6 +1597,33 @@
         </div>
       </div>
     </header>
+
+    <section class="logo-rail" aria-label="Popular vehicle makes">
+      <div class="logo-rail__viewport">
+        <div class="logo-rail__track">
+          <div class="logo-group">
+            <span class="logo-item"><img src="https://cdn.simpleicons.org/toyota/08255b" alt="Toyota" /></span>
+            <span class="logo-item"><img src="https://cdn.simpleicons.org/honda/08255b" alt="Honda" /></span>
+            <span class="logo-item"><img src="https://cdn.simpleicons.org/nissan/08255b" alt="Nissan" /></span>
+            <span class="logo-item"><img src="https://cdn.simpleicons.org/hyundai/08255b" alt="Hyundai" /></span>
+            <span class="logo-item"><img src="https://cdn.simpleicons.org/bmw/08255b" alt="BMW" /></span>
+            <span class="logo-item"><img src="https://cdn.simpleicons.org/mazda/08255b" alt="Mazda" /></span>
+            <span class="logo-item"><img src="https://cdn.simpleicons.org/volkswagen/08255b" alt="Volkswagen" /></span>
+            <span class="logo-item"><img src="https://cdn.simpleicons.org/subaru/08255b" alt="Subaru" /></span>
+          </div>
+          <div class="logo-group" aria-hidden="true">
+            <span class="logo-item"><img src="https://cdn.simpleicons.org/toyota/08255b" alt="" /></span>
+            <span class="logo-item"><img src="https://cdn.simpleicons.org/honda/08255b" alt="" /></span>
+            <span class="logo-item"><img src="https://cdn.simpleicons.org/nissan/08255b" alt="" /></span>
+            <span class="logo-item"><img src="https://cdn.simpleicons.org/hyundai/08255b" alt="" /></span>
+            <span class="logo-item"><img src="https://cdn.simpleicons.org/bmw/08255b" alt="" /></span>
+            <span class="logo-item"><img src="https://cdn.simpleicons.org/mazda/08255b" alt="" /></span>
+            <span class="logo-item"><img src="https://cdn.simpleicons.org/volkswagen/08255b" alt="" /></span>
+            <span class="logo-item"><img src="https://cdn.simpleicons.org/subaru/08255b" alt="" /></span>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="struggle" id="struggle">
       <div class="struggle__copy reveal">
