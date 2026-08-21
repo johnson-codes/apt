@@ -1468,6 +1468,7 @@
       body { line-height: 1.6; }
       .hero { height: min(800px,100svh); min-height: 720px; }
       .hero__content { padding-top: 7rem; padding-bottom: 3rem; }
+      .hero { height: min(960px,120svh); min-height:864px; }
       .hero h1 { max-width: 9ch; font-size: clamp(3rem,5.4vw,4.8rem); }
       .hero .lead { max-width: 38ch; line-height: 1.55; }
 
@@ -1551,19 +1552,132 @@
 
       .reviews .wrap--narrow { gap: clamp(2rem,5vw,4.5rem); }
       .reviews .quotes { gap: .85rem; }
+      .reviews {
+        background:
+          radial-gradient(circle at 88% 12%, rgba(62,112,184,.42), transparent 36%),
+          linear-gradient(135deg, rgba(4,20,48,.97), rgba(9,45,96,.9));
+      }
+      .reviews h2 { color: #fff; }
+      .reviews .eyebrow {
+        color: rgba(255,255,255,.92);
+        border-color: rgba(255,255,255,.24);
+        background: rgba(255,255,255,.06);
+      }
       .quotes blockquote { padding: 1.4rem; font-size: clamp(1.05rem,1.7vw,1.25rem); line-height: 1.45; }
+      .reviews .quotes blockquote {
+        color: #fff;
+        border-color: rgba(255,255,255,.17);
+        background: rgba(255,255,255,.09);
+        box-shadow: 0 16px 40px rgba(0,0,0,.12);
+        backdrop-filter: blur(8px);
+      }
+      .reviews .quotes blockquote:hover {
+        border-color: rgba(255,255,255,.32);
+        box-shadow: 0 20px 45px rgba(0,0,0,.2);
+      }
       .quote-head { margin-bottom: .75rem; }
       .quote-avatar { width: 2.4rem; height: 2.4rem; }
-      .quotes cite { margin-top: .7rem; }
+      .reviews .quote-avatar { background: var(--red); }
+      .reviews .quotes cite { margin-top: .7rem; color: rgba(255,255,255,.78); }
+      .reviews .review-arrow {
+        color: #fff;
+        border-color: rgba(255,255,255,.32);
+        background: rgba(255,255,255,.08);
+      }
+      .reviews .review-count { color: rgba(255,255,255,.72); }
 
       .offer { padding-block: clamp(3rem,5vw,4.25rem); }
       .offer-band { padding: 1.75rem 2rem; }
       .offer-note { margin-top: 1rem; padding-top: 1rem; }
 
+      /* —— Senior UI polish: one cohesive visual system —— */
+      :root {
+        --surface: #f3f6fa;
+        --radius-sm: .45rem;
+        --radius-md: .75rem;
+        --shadow-sm: 0 10px 28px rgba(8,37,91,.08);
+        --shadow-md: 0 22px 55px rgba(5,24,55,.14);
+      }
+      ::selection { color:#fff; background:var(--red); }
+      body { background: var(--surface); text-rendering: optimizeLegibility; }
+      section { overflow: clip; }
+      a,button,input,select,textarea { -webkit-tap-highlight-color: transparent; }
+      a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible {
+        outline: 3px solid rgba(226,37,43,.34);
+        outline-offset: 3px;
+      }
+
+      .btn { min-height: 3.45rem; border-radius: var(--radius-sm); }
+      .btn--red { box-shadow: 0 12px 30px rgba(226,37,43,.22); }
+      .btn--red:hover { box-shadow: 0 16px 38px rgba(226,37,43,.32); }
+      .form-actions .btn--red { width:100%; }
+
+      .form-panel {
+        border: 1px solid rgba(255,255,255,.68);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-md);
+      }
+      input,select,textarea {
+        border-radius: var(--radius-sm);
+        transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+      }
+      input:hover,select:hover,textarea:hover { border-color: rgba(8,37,91,.34); }
+      input:focus,select:focus,textarea:focus {
+        border-color: var(--navy-soft);
+        box-shadow: 0 0 0 3px rgba(26,58,122,.12);
+        background:#fff;
+      }
+
+      .logo-rail { box-shadow: 0 12px 35px rgba(8,37,91,.07); }
+      .struggle__copy { background: linear-gradient(145deg,#fff 0%,#f8faff 100%); }
+      .pain p { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+
+      .who-points > div {
+        border-radius: var(--radius-sm);
+        backdrop-filter: blur(10px);
+      }
+      .team-card,.path article {
+        border-radius: var(--radius-sm);
+        box-shadow: var(--shadow-sm);
+      }
+      .team-card { overflow:hidden; }
+      .team-card__body { display:flex; min-height: 205px; flex-direction:column; }
+      .team-card__link { margin-top:auto; padding-top:1rem; }
+      .team-photo { overflow:hidden; }
+      .team-photo img { transition: transform .7s cubic-bezier(.2,.8,.2,1); }
+      .team-card:hover .team-photo img { transform: scale(1.035); }
+
+      .guide { background: linear-gradient(180deg,#eef2f7 0%,#f4f7fa 100%); }
+      .path article {
+        border-color: rgba(8,37,91,.1);
+        background: rgba(255,255,255,.88);
+      }
+      .path article:hover { background:#fff; }
+
+      .reviews .quotes blockquote { border-radius: var(--radius-sm); }
+      .review-controls { padding-top:.2rem; }
+      .offer-band {
+        border-radius: var(--radius-sm);
+        box-shadow: var(--shadow-sm);
+      }
+
+      @media (prefers-reduced-motion:reduce) {
+        *,*::before,*::after { scroll-behavior:auto!important; transition-duration:.01ms!important; animation-duration:.01ms!important; animation-iteration-count:1!important; }
+      }
+
       @media (max-width:960px) {
         .hero { height:auto; min-height:0; }
+        .struggle__copy { align-items:flex-start; }
+        .struggle__copy .wrap-local {
+          width: 100%;
+          max-width: 100%;
+          margin-inline: 0;
+          align-self: stretch;
+          text-align: left;
+        }
         .team__head,.guide-head { max-width: 42rem; }
         .team-card { grid-template-columns: 220px 1fr; }
+        .team-card__body { min-height:300px; }
         .team-photo { min-height: 300px; aspect-ratio:auto; }
         .path article { min-height:0; }
       }
@@ -1572,8 +1686,9 @@
         .hero h1 { font-size: clamp(2.65rem,13vw,3.65rem); }
         section:not(.hero):not(.logo-rail) h2 { font-size: clamp(2rem,10vw,2.7rem); }
         .struggle__visual { min-height:260px; }
-        .struggle__copy { padding-block:3rem; }
+        .struggle__copy { padding:3rem 1rem; }
         .team-card { grid-template-columns:1fr; }
+        .team-card__body { min-height:0; }
         .team-photo { min-height:0; aspect-ratio:4 / 3; }
         .offer-band { padding:1.35rem; }
       }
@@ -1606,10 +1721,6 @@
             A Burnaby wholesale partner that understands the pressure of the shop floor — and shows up with the right part.
           </p>
           <p class="hero-offer">New dealers: free delivery on your first order.</p>
-          <div class="cta-row">
-            <a class="btn btn--red" href="#apply">Open a dealer account</a>
-            <a class="btn btn--ghost" href="#guide">See how it works</a>
-          </div>
         </div>
 
         <div class="form-panel" id="apply">
@@ -1663,7 +1774,7 @@
             <p class="form-fine">APT may contact you about your account.</p>
 
             <div class="form-actions">
-              <button class="btn btn--navy" type="submit">Request account</button>
+              <button class="btn btn--red" type="submit">Request account</button>
             </div>
           </form>
         </div>
