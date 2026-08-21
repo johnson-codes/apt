@@ -684,12 +684,41 @@
       }
 
       .quotes blockquote::before {
-        content: "";
-        display: block;
-        width: 2.5rem;
-        height: 3px;
+        display: none;
+      }
+
+      .quote-head {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
         margin-bottom: 1rem;
-        background: var(--red);
+      }
+
+      .quote-avatar {
+        width: 2.75rem;
+        height: 2.75rem;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        border-radius: 50%;
+        background: var(--navy);
+        color: #fff;
+        font-family: "Oswald", sans-serif;
+        font-size: 0.82rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+      }
+
+      .quote-avatar--alt {
+        background: var(--navy-soft, #163b76);
+        box-shadow: inset 0 0 0 2px rgba(226, 37, 43, 0.45);
+      }
+
+      .quote-stars {
+        color: #e6b422;
+        font-size: 1.05rem;
+        letter-spacing: 0.14em;
+        line-height: 1;
       }
 
       .quotes cite {
@@ -876,14 +905,474 @@
           display: none;
         }
       }
+      /* —— Focused visual refresh —— */
+      :root {
+        --navy: #08255b; --navy-deep: #061735; --navy-soft: #163b76;
+        --red: #e2252b; --red-bright: #f1393f; --snow: #f3f5f8;
+        --line: #d8dde6; --ink: #101827; --muted: #596579;
+      }
+      body { font-size: 1rem; }
+      .wrap, .wrap--narrow, .wrap--offset, .offer-band, .path {
+        width: min(1180px, calc(100% - 3rem)); margin-inline: auto;
+      }
+      .eyebrow { margin-bottom: 1rem; font-size: .72rem; letter-spacing: .19em; }
+      h2 { max-width: 17ch; font-size: clamp(2.25rem, 4.25vw, 4rem); letter-spacing: -.025em; }
+      .lead { font-size: 1.05rem; line-height: 1.65; }
+      .btn { min-height: 50px; padding: .85rem 1.25rem; border-radius: .35rem; }
+      .btn--red { box-shadow: 0 12px 30px rgba(226,37,43,.24); }
+
+      .topbar { padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,.14); }
+      .topbar .wrap { width: min(1180px, calc(100% - 3rem)); }
+      .nav-brand { display: inline-flex; align-items: baseline; gap: .45rem; font-family: "Barlow Condensed",sans-serif; font-style: italic; font-size: 1.8rem; line-height: 1; text-decoration: none; }
+      .nav-brand small { font-family: "Figtree",sans-serif; font-size: .63rem; font-style: normal; letter-spacing: .18em; text-transform: uppercase; }
+      .nav-links { display: flex; align-items: center; gap: 1.35rem; }
+      .nav-links a { font-size: .82rem; letter-spacing: .02em; }
+      .nav-call { padding: .55rem .8rem; border: 1px solid rgba(255,255,255,.35); border-radius: .25rem; }
+
+      .hero { min-height: 760px; height: min(880px, 100svh); }
+      .hero__media img { object-position: 68% 52%; }
+      .hero__veil { background: linear-gradient(90deg,rgba(5,18,43,.96),rgba(5,27,68,.86) 38%,rgba(5,27,68,.2) 72%,rgba(5,27,68,.06)),linear-gradient(to top,rgba(5,18,43,.66),transparent 52%); }
+      .hero__content { width: min(1180px,calc(100% - 3rem)); grid-template-columns: minmax(0,1.02fr) minmax(370px,.78fr); gap: clamp(3rem,7vw,7.5rem); padding: 8rem 0 4rem; align-items: center; }
+      .hero__copy { max-width: 39rem; }
+      .hero .brand { font-size: clamp(3.25rem,7vw,5.7rem); }
+      .hero h1 { max-width: 10ch; margin-top: 1.5rem; font-size: clamp(3rem,5.8vw,5.2rem); line-height: .98; letter-spacing: -.035em; }
+      .hero .lead { max-width: 42ch; font-size: 1.13rem; }
+      .hero-offer { margin-top: 1.5rem; padding: .65rem .9rem; background: rgba(226,37,43,.16); border-radius: 0 .25rem .25rem 0; color: #fff; }
+      .form-panel { padding: 1.55rem; border: 0; border-radius: .6rem; transform: none; box-shadow: 0 30px 80px rgba(0,8,24,.38); }
+      .form-panel::after { display: none; }
+      .form-panel h3 { font-size: 1.6rem; }
+      .form-panel > p { margin-bottom: 1rem; line-height: 1.5; }
+      form { gap: .7rem .8rem; }
+      label { font-size: .7rem; }
+      input,select,textarea { padding: .68rem .75rem; border-radius: .25rem; }
+      textarea { min-height: 60px; }
+
+      .struggle { min-height: auto; grid-template-columns: 1fr 1fr; }
+      .struggle__copy { padding: clamp(4rem,7vw,7rem) clamp(2rem,7vw,7rem); }
+      .struggle__copy .wrap-local { max-width: 34rem; }
+      .struggle__visual { min-height: 620px; }
+      .pain { gap: .8rem; margin-top: 2rem; }
+      .pain p { padding: .9rem 1rem; border-left-width: 2px; background: var(--snow); font-size: 1rem; }
+
+      .who .wrap--offset { padding: clamp(5rem,9vw,8rem) 0; }
+      .who h2 { max-width: 16ch; }
+      .who .lead { max-width: 46ch; }
+      .who-points { max-width: none; gap: 1rem; margin-top: 3rem; }
+      .who-points > div { min-height: 190px; padding: 1.5rem; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.07); backdrop-filter: blur(8px); }
+      .who-points p { max-width: 29ch; }
+
+      .guide { padding: clamp(5rem,9vw,8rem) 0; }
+      .guide .wrap--narrow { margin-bottom: 3.5rem; }
+      .guide-head { grid-template-columns: 1.35fr .65fr; align-items: end; gap: 3rem; }
+      .path { border-top: 0; gap: 1rem; }
+      .path article { margin: 0; padding: 1.65rem; border: 1px solid var(--line); background: #fff; }
+      .path .num { font-size: 1rem; letter-spacing: .12em; }
+      .path h3 { font-size: 1.55rem; }
+
+      .success { padding: clamp(5rem,9vw,8rem) 0; }
+      .success .wrap--offset { display: grid; grid-template-columns: 1.1fr .9fr; column-gap: clamp(3rem,8vw,8rem); }
+      .success .eyebrow,.success h2,.success .lead { grid-column: 1; }
+      .success-story { grid-column: 2; grid-row: 1 / span 3; margin-top: 2.2rem; }
+      .stats { grid-column: 1 / -1; max-width: none; }
+      .stats > div { padding-right: 2rem; border-right: 1px solid rgba(255,255,255,.16); }
+      .stats > div:last-child { border-right: 0; }
+
+      .reviews { padding: clamp(5rem,9vw,8rem) 0; }
+      .reviews h2 { max-width: 14ch; }
+      .quotes { grid-template-columns: 1.2fr .8fr; gap: 1.25rem; }
+      .quotes blockquote { max-width: none; min-height: 260px; padding: 2rem; border: 1px solid var(--line); background: var(--snow); }
+
+      .offer { padding: clamp(4rem,7vw,6rem) 0; }
+      .offer-band { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 0 3rem; padding: 2.5rem 3rem; border-left: 5px solid var(--red); background: #fff; box-shadow: 0 18px 50px rgba(8,37,91,.08); }
+      .offer-band .eyebrow,.offer-band h2,.offer-band .lead,.offer-note { grid-column: 1; }
+      .offer-actions { grid-column: 2; grid-row: 1 / span 4; margin: 0; }
+      .offer-note { margin-top: 1.25rem; padding-top: 1.25rem; }
+
+      @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation:none!important; transition:none!important; } }
+      @media (max-width:960px) {
+        .nav-links a:not(.nav-call) { display:none; }
+        .hero { height:auto; min-height:0; }
+        .hero__content { grid-template-columns:1fr; gap:2rem; padding:8rem 0 3rem; }
+        .hero__copy { max-width:35rem; }
+        .form-panel { max-width:36rem; }
+        .struggle__visual { min-height:420px; }
+        .guide-head,.success .wrap--offset,.quotes,.offer-band { grid-template-columns:1fr; }
+        .success-story,.stats,.offer-actions { grid-column:1; grid-row:auto; }
+        .offer-actions { margin-top:1.5rem; }
+        .offer-band { padding:2rem; }
+      }
+      @media (max-width:640px) {
+        .wrap,.wrap--narrow,.wrap--offset,.offer-band,.path,.topbar .wrap,.hero__content { width:min(100% - 2rem,1180px); }
+        .nav-brand { font-size:1.55rem; }
+        .nav-call { font-size:.75rem!important; }
+        .hero h1 { font-size:clamp(2.7rem,14vw,4rem); }
+        form { grid-template-columns:1fr; }
+        .field { grid-column:1; }
+        .struggle { grid-template-columns:1fr; }
+        .struggle__visual { order:-1; min-height:300px; }
+        .struggle__copy { padding:3.5rem 1rem; }
+        .who-points,.path,.stats { grid-template-columns:1fr; }
+        .who-points > div { min-height:0; }
+        .path article { border:1px solid var(--line); padding:1.35rem; }
+        .stats > div { padding:0 0 1.25rem; border-right:0; border-bottom:1px solid rgba(255,255,255,.16); }
+        .quotes blockquote { min-height:0; padding:1.5rem; }
+        .offer-band { padding:1.5rem; }
+      }
+
+      /* —— Iconography & motion —— */
+      .btn::after {
+        content: "→";
+        display: inline-block;
+        margin-left: .15rem;
+        font-size: 1.1em;
+        transition: transform .22s cubic-bezier(.2,.8,.2,1);
+      }
+      .btn:hover::after { transform: translateX(4px); }
+
+      .pain p {
+        position: relative;
+        padding-left: 3.25rem;
+        transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      }
+      .pain p::before {
+        content: "!";
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        width: 1.45rem;
+        height: 1.45rem;
+        display: grid;
+        place-items: center;
+        transform: translateY(-50%);
+        border: 1px solid rgba(226,37,43,.32);
+        border-radius: 50%;
+        color: var(--red);
+        font-size: .72rem;
+        font-weight: 800;
+      }
+      .pain p:hover { transform: translateX(5px); border-color: var(--red); box-shadow: 0 10px 25px rgba(8,37,91,.07); }
+
+      .feature-icon,
+      .step-icon {
+        width: 2.85rem;
+        height: 2.85rem;
+        display: grid;
+        place-items: center;
+        margin-bottom: 1.25rem;
+        border: 1px solid currentColor;
+        border-radius: .45rem;
+        font-family: "Oswald",sans-serif;
+        font-size: 1.2rem;
+        line-height: 1;
+      }
+      .feature-icon { color: #ffb4b4; background: rgba(226,37,43,.12); }
+      .step-icon { color: var(--red); background: rgba(226,37,43,.06); }
+
+      .who-points > div,
+      .path article,
+      .quotes blockquote {
+        position: relative;
+        overflow: hidden;
+        transition: transform .32s cubic-bezier(.2,.8,.2,1), border-color .32s ease, box-shadow .32s ease, background .32s ease;
+      }
+      .who-points > div::after,
+      .path article::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(115deg,transparent 30%,rgba(255,255,255,.12),transparent 70%);
+        transform: translateX(-120%);
+        transition: transform .65s ease;
+      }
+      .who-points > div:hover,
+      .path article:hover,
+      .quotes blockquote:hover { transform: translateY(-7px); }
+      .who-points > div:hover { border-color: rgba(255,255,255,.42); background: rgba(255,255,255,.11); }
+      .path article:hover,.quotes blockquote:hover { border-color: rgba(8,37,91,.28); box-shadow: 0 18px 40px rgba(8,37,91,.09); }
+      .who-points > div:hover::after,.path article:hover::after { transform: translateX(120%); }
+
+      .step-icon { transition: transform .35s cubic-bezier(.2,.8,.2,1), background .25s ease, color .25s ease; }
+      .path article:hover .step-icon { transform: rotate(-7deg) scale(1.08); color: #fff; background: var(--red); }
+      .path article:hover .num { transform: translateX(5px); }
+      .path .num { transition: transform .25s ease; }
+
+      .stats strong { display: inline-block; transition: transform .3s cubic-bezier(.2,.8,.2,1), color .3s ease; }
+      .stats > div:hover strong { transform: translateY(-4px) scale(1.04); color: #fff; }
+
+      .struggle__visual img,.who__media img { transition: transform 1.1s cubic-bezier(.2,.8,.2,1), filter .6s ease; }
+      .struggle:hover .struggle__visual img { transform: scale(1.035); }
+      .who:hover .who__media img { transform: scale(1.025); filter: saturate(1.05); }
+
+      .offer-band::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 5px;
+        background: var(--red);
+        animation: offerPulse 2.8s ease-in-out infinite;
+      }
+      .offer-band { position: relative; }
+
+      .reveal { transition-duration: .72s; transition-delay: var(--reveal-delay,0ms); }
+      .stagger-child { opacity: 0; transform: translateY(18px); }
+      .is-in .stagger-child { animation: childRise .58s cubic-bezier(.2,.8,.2,1) forwards; animation-delay: var(--child-delay,0ms); }
+
+      @keyframes childRise { to { opacity:1; transform:none; } }
+      @keyframes offerPulse { 0%,100% { opacity:.7; } 50% { opacity:1; box-shadow:0 0 22px rgba(226,37,43,.42); } }
+
+      /* —— Scanability & section architecture —— */
+      main, section { isolation: isolate; }
+      section:not(.hero) {
+        position: relative;
+        border-top: 1px solid rgba(8,37,91,.14);
+      }
+      section:not(.hero)::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        z-index: 3;
+        background: linear-gradient(90deg,var(--red) 0 12%,var(--navy) 12% 100%);
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: .8rem;
+        width: fit-content;
+        min-height: 2rem;
+        margin-bottom: 1.35rem;
+        padding: .35rem .7rem .35rem .4rem;
+        border: 1px solid rgba(8,37,91,.16);
+        border-radius: 999px;
+        background: rgba(255,255,255,.7);
+        color: var(--navy);
+        font-weight: 800;
+      }
+      .eyebrow::before {
+        content: attr(data-index);
+        width: 1.35rem;
+        height: 1.35rem;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--red);
+        color: #fff;
+        font-size: .62rem;
+        letter-spacing: 0;
+      }
+
+      section:not(.hero) h2 { margin-bottom: 1.2rem; }
+      section:not(.hero) .lead { margin-top: 0; max-width: 55ch; }
+
+      .struggle { background: #fff; }
+      .struggle__copy { background: #fff; }
+      .struggle__copy .lead { padding-bottom: 1.6rem; border-bottom: 1px solid var(--line); }
+      .pain { margin-top: 1.35rem; }
+
+      .who { border-top-color: rgba(255,255,255,.16)!important; }
+      .who::before { background: linear-gradient(90deg,var(--red) 0 34%,#fff 34% 36%,var(--navy) 36% 100%)!important; }
+      .who .eyebrow,.success .eyebrow {
+        border-color: rgba(255,255,255,.22);
+        background: rgba(5,18,43,.34);
+        color: #fff;
+      }
+      .who-points { padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.2); }
+
+      .guide { background: #eef1f6; }
+      .guide-head { padding-bottom: 2.25rem; border-bottom: 1px solid rgba(8,37,91,.16); }
+      .path article { box-shadow: 0 8px 24px rgba(8,37,91,.055); }
+
+      .success {
+        background:
+          radial-gradient(circle at 82% 20%,rgba(30,70,132,.38),transparent 34%),
+          var(--navy-deep);
+      }
+      .success::before { background: linear-gradient(90deg,var(--red) 0 50%,#fff 50% 51%,var(--navy-soft) 51% 100%)!important; }
+      .success-story { padding-left: 2rem; border-left: 1px solid rgba(255,255,255,.25); }
+      .stats { background: rgba(255,255,255,.04); padding: 2rem; border: 1px solid rgba(255,255,255,.14); }
+
+      .reviews { background: #fbfcfd; }
+      .reviews .wrap--narrow { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(2rem,6vw,6rem); align-items: start; }
+      .reviews .eyebrow,.reviews h2 { grid-column: 1; }
+      .reviews .quotes { grid-column: 2; grid-row: 1 / span 2; margin-top: 0; grid-template-columns: 1fr; }
+      .reviews .quotes blockquote { min-height: 0; }
+
+      .offer { background: #e9edf4; }
+      .offer-band { border: 1px solid rgba(8,37,91,.12); border-left: 5px solid var(--red); }
+
+      @media (max-width:960px) {
+        .reviews .wrap--narrow { grid-template-columns: 1fr; }
+        .reviews .eyebrow,.reviews h2,.reviews .quotes { grid-column: 1; grid-row: auto; }
+        .reviews .quotes { margin-top: 1rem; }
+        .success-story { padding-left: 0; border-left: 0; }
+      }
+      @media (max-width:640px) {
+        section:not(.hero)::before { height: 4px; }
+        section:not(.hero) h2 { margin-bottom: 1rem; }
+        .eyebrow { margin-bottom: 1rem; }
+        .stats { padding: 1.35rem; }
+      }
+
+      /* —— Team profiles —— */
+      .team {
+        padding: clamp(5rem,9vw,8rem) 0;
+        background: #fff;
+      }
+      .team__head {
+        display: grid;
+        grid-template-columns: .8fr 1.2fr;
+        gap: clamp(2rem,7vw,7rem);
+        align-items: end;
+        margin-bottom: 3rem;
+        padding-bottom: 2.25rem;
+        border-bottom: 1px solid var(--line);
+      }
+      .team__head .eyebrow,.team__head h2 { grid-column: 1; }
+      .team__head .lead { grid-column: 2; grid-row: 1 / span 2; }
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(3,minmax(0,1fr));
+        gap: 1rem;
+      }
+      .team-card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background: var(--snow);
+        transition: transform .32s cubic-bezier(.2,.8,.2,1),box-shadow .32s ease,border-color .32s ease;
+      }
+      .team-card:hover {
+        transform: translateY(-7px);
+        border-color: rgba(8,37,91,.3);
+        box-shadow: 0 20px 46px rgba(8,37,91,.12);
+      }
+      .team-photo {
+        aspect-ratio: 4 / 3;
+        background-image: url("assets/team-profiles.png");
+        background-repeat: no-repeat;
+        background-size: 300% auto;
+        filter: saturate(.9);
+        transition: transform .7s cubic-bezier(.2,.8,.2,1),filter .4s ease;
+      }
+      .team-card:hover .team-photo { transform: scale(1.025); filter: saturate(1.03); }
+      .team-photo--left { background-position: left top; }
+      .team-photo--center { background-position: center top; }
+      .team-photo--right { background-position: right top; }
+      .team-card__body { padding: 1.5rem; }
+      .team-role {
+        display: inline-block;
+        margin-bottom: .75rem;
+        color: var(--red);
+        font-size: .68rem;
+        font-weight: 800;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+      }
+      .team-card h3 { margin-bottom: .55rem; color: var(--navy); font-size: 1.55rem; }
+      .team-card p { max-width: 34ch; color: var(--muted); }
+      .team-card__link {
+        display: inline-flex;
+        align-items: center;
+        gap: .4rem;
+        margin-top: 1.1rem;
+        color: var(--navy);
+        font-size: .88rem;
+        font-weight: 800;
+        text-decoration: none;
+      }
+      .team-card__link::after { content: "→"; transition: transform .2s ease; }
+      .team-card__link:hover::after { transform: translateX(4px); }
+
+      @media (max-width:960px) {
+        .team__head { grid-template-columns: 1fr; gap: .5rem; }
+        .team__head .eyebrow,.team__head h2,.team__head .lead { grid-column: 1; grid-row: auto; }
+        .team-grid { grid-template-columns: 1fr; }
+        .team-card { display: grid; grid-template-columns: minmax(230px,.8fr) 1.2fr; }
+        .team-photo { aspect-ratio: auto; min-height: 300px; }
+      }
+      @media (max-width:640px) {
+        .team-card { grid-template-columns: 1fr; }
+        .team-photo { aspect-ratio: 4 / 3; min-height: 0; }
+      }
+
+      /* —— Calm reading pass —— */
+      section:not(.hero) h2 { font-size: clamp(2.15rem,3.8vw,3.4rem); line-height: 1.02; }
+      .struggle__copy { padding-block: clamp(3.75rem,6vw,5.5rem); }
+      .struggle__visual { min-height: 540px; }
+      .who .wrap--offset,
+      .team,
+      .guide,
+      .success,
+      .reviews { padding-block: clamp(4.25rem,7vw,6rem); }
+      .who-points,.team-grid,.path { margin-top: 2rem; }
+      .who-points > div { min-height: 170px; }
+      .team__head,.guide-head { margin-bottom: 2.25rem; padding-bottom: 1.75rem; }
+      .team-card__body { padding: 1.25rem; }
+      .team-card h3,.path h3 { font-size: 1.4rem; }
+      .team-card p,.path p,.who-points p { line-height: 1.5; }
+      .success .wrap--offset { grid-template-columns: 1fr 1fr; }
+      .success .lead { grid-column: 2; grid-row: 1 / span 2; align-self: end; margin-bottom: .25rem; }
+      .stats { margin-top: 2.25rem; }
+      .quotes blockquote { padding: 1.6rem; font-size: clamp(1.1rem,2vw,1.35rem); }
+      .offer-band { padding-block: 2rem; }
+      @media (max-width:960px) {
+        .success .wrap--offset { grid-template-columns: 1fr; }
+        .success .lead { grid-column: 1; grid-row: auto; }
+      }
+
+      /* —— Sticky call header —— */
+      .topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        padding: .8rem 0;
+        background: rgba(6,23,53,.92);
+        border-bottom: 1px solid rgba(255,255,255,.16);
+        box-shadow: 0 8px 26px rgba(0,8,24,.18);
+        backdrop-filter: blur(14px);
+      }
+      .nav-links { margin-left: auto; }
+      .nav-call {
+        padding: .72rem 1rem;
+        border: 0;
+        border-radius: .3rem;
+        background: var(--red);
+        color: #fff;
+        box-shadow: 0 8px 22px rgba(226,37,43,.3);
+        transition: background .2s ease,transform .2s ease,box-shadow .2s ease;
+      }
+      .nav-call:hover {
+        background: var(--red-bright);
+        box-shadow: 0 12px 28px rgba(226,37,43,.38);
+        text-decoration: none!important;
+        transform: translateY(-1px);
+      }
+      .team__head,
+      .guide-head {
+        display: block;
+      }
+      .team__head h2,
+      .guide-head h2 {
+        max-width: 15ch;
+      }
     </style>
   </head>
   <body>
     <header class="hero" id="top">
       <div class="topbar">
         <div class="wrap">
-          <span class="hide-sm">Wholesale partner for dealers · Burnaby, BC</span>
-          <a href="tel:18664260666">1-866-426-0666</a>
+          <a class="nav-brand" href="#top">APT <small>Auto Parts</small></a>
+          <nav class="nav-links" aria-label="Call APT Auto Parts">
+            <a class="nav-call" href="tel:18664260666">1-866-426-0666</a>
+          </nav>
         </div>
       </div>
 
@@ -904,33 +1393,34 @@
           </p>
           <p class="hero-offer">New dealers: free delivery on your first order.</p>
           <div class="cta-row">
-            <a class="btn btn--ghost" href="#struggle">See how we help</a>
+            <a class="btn btn--red" href="#apply">Open a dealer account</a>
+            <a class="btn btn--ghost" href="#guide">See how it works</a>
           </div>
         </div>
 
         <div class="form-panel" id="apply">
-          <h3>Request your dealer account</h3>
-          <p>Tell us about your business. We’ll follow up to set up your account and first-order free delivery.</p>
+          <h3>Open a dealer account</h3>
+          <p>Share your details. We’ll call to confirm.</p>
 
           <div class="form-success" id="formSuccess" role="status" aria-live="polite">
-            <h4>Thank you — we received your request.</h4>
-            <p>Our team will reach out shortly to finish your account setup. If you need us sooner, call 1-866-426-0666.</p>
+            <h4>Request received.</h4>
+            <p>We’ll call shortly. Need us now? Call 1-866-426-0666.</p>
           </div>
 
           <form id="dealerForm" novalidate>
             <div class="field field--full">
               <label for="business">Business name</label>
-              <input id="business" name="business" type="text" autocomplete="organization" required placeholder="Your shop or dealership" />
+              <input id="business" name="business" type="text" autocomplete="organization" required placeholder="Shop or dealership" />
             </div>
 
             <div class="field">
-              <label for="contact">Contact name</label>
-              <input id="contact" name="contact" type="text" autocomplete="name" required placeholder="Full name" />
+              <label for="contact">Name</label>
+              <input id="contact" name="contact" type="text" autocomplete="name" required placeholder="Your name" />
             </div>
 
             <div class="field">
               <label for="phone">Phone</label>
-              <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="Best number to reach you" />
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="Phone number" />
             </div>
 
             <div class="field">
@@ -944,7 +1434,7 @@
             </div>
 
             <div class="field">
-              <label for="nature">Nature of business</label>
+              <label for="nature">Business type</label>
               <select id="nature" name="nature" required>
                 <option value="" disabled selected>Select one</option>
                 <option>Dealership</option>
@@ -956,15 +1446,10 @@
               </select>
             </div>
 
-            <div class="field field--full">
-              <label for="message">Anything we should know? <span style="font-weight:500;text-transform:none;letter-spacing:0;color:var(--muted)">(optional)</span></label>
-              <textarea id="message" name="message" placeholder="Volume, brands you stock, delivery preferences…"></textarea>
-            </div>
-
-            <p class="form-fine">By submitting, you agree to be contacted about opening a wholesale account with APT Auto Parts.</p>
+            <p class="form-fine">APT may contact you about your account.</p>
 
             <div class="form-actions">
-              <button class="btn btn--navy" type="submit">Submit &amp; claim free delivery</button>
+              <button class="btn btn--navy" type="submit">Request account</button>
             </div>
           </form>
         </div>
@@ -974,15 +1459,14 @@
     <section class="struggle" id="struggle">
       <div class="struggle__copy reveal">
         <div class="wrap-local">
-          <span class="eyebrow">We understand the struggle</span>
+          <span class="eyebrow" data-index="01">The problem</span>
           <h2>Late parts don’t just delay a job. They stall the whole day.</h2>
           <p class="lead">
-            You care about every vehicle on the hoist. We care about getting you what you need before the afternoon gets away from you.
+            Keep techs working and customers on schedule.
           </p>
           <div class="pain">
-            <p>Bays waiting while someone chases a supplier who “almost shipped.”</p>
-            <p>Customers calling for updates your team shouldn’t have to invent.</p>
-            <p>Rush fees and wrong-fit returns that quietly eat the margin.</p>
+            <p class="stagger-child">Late parts leave bays waiting.</p>
+            <p class="stagger-child">Wrong-fit returns quietly eat margin.</p>
           </div>
         </div>
       </div>
@@ -997,24 +1481,65 @@
         <div class="who__veil"></div>
       </div>
       <div class="wrap--offset reveal">
-        <span class="eyebrow">Who we are</span>
+        <span class="eyebrow" data-index="02">Why APT</span>
         <h2>APT Auto Parts — close enough to care, strong enough to deliver.</h2>
         <p class="lead">
-          For over 45 years we’ve helped Canadian shops stay stocked and moving. Based in Burnaby, built for dealers who need a real wholesale partner — not a catalogue and a hope.
+          Burnaby-based. Canada-wide. Serving shops for over 45 years.
         </p>
         <div class="who-points">
-          <div>
+          <div class="stagger-child">
+            <span class="feature-icon" aria-hidden="true">⌖</span>
             <h3>Local roots</h3>
-            <p>Burnaby-based support for Lower Mainland dealers who value face-to-face reliability.</p>
+            <p>Direct support for Lower Mainland dealers.</p>
           </div>
-          <div>
+          <div class="stagger-child">
+            <span class="feature-icon" aria-hidden="true">↗</span>
             <h3>National reach</h3>
-            <p>Locations across Canada so your network can grow with the same standard of service.</p>
+            <p>Six locations across Canada.</p>
           </div>
-          <div>
+          <div class="stagger-child">
+            <span class="feature-icon" aria-hidden="true">◎</span>
             <h3>People who listen</h3>
-            <p>Parts advisors who know the shop floor — and treat your timeline like their own.</p>
+            <p>Parts advisors who understand shop pressure.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="team" id="team">
+      <div class="wrap">
+        <div class="team__head reveal">
+          <span class="eyebrow" data-index="03">Our team</span>
+          <h2>Real people behind every part.</h2>
+        </div>
+        <div class="team-grid reveal">
+          <article class="team-card stagger-child">
+            <div class="team-photo team-photo--left" role="img" aria-label="Experienced parts advisor in an auto-parts warehouse"></div>
+            <div class="team-card__body">
+              <span class="team-role">Parts advice</span>
+              <h3>The right fit, first time.</h3>
+              <p>Fitment help from someone who understands urgency.</p>
+              <a class="team-card__link" href="tel:18664260666">Call an advisor</a>
+            </div>
+          </article>
+          <article class="team-card stagger-child">
+            <div class="team-photo team-photo--center" role="img" aria-label="Delivery operations lead in an auto-parts warehouse"></div>
+            <div class="team-card__body">
+              <span class="team-role">Delivery operations</span>
+              <h3>Every order has an owner.</h3>
+              <p>Checked and coordinated from our shelf to your shop.</p>
+              <a class="team-card__link" href="#guide">See our process</a>
+            </div>
+          </article>
+          <article class="team-card stagger-child">
+            <div class="team-photo team-photo--right" role="img" aria-label="Dealer support specialist in an auto-parts warehouse"></div>
+            <div class="team-card__body">
+              <span class="team-role">Dealer support</span>
+              <h3>Help that stays human.</h3>
+              <p>Answers and updates from people who know your business.</p>
+              <a class="team-card__link" href="#apply">Open an account</a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -1023,42 +1548,39 @@
       <div class="wrap--narrow">
         <div class="guide-head reveal">
           <div>
-            <span class="eyebrow">How we guide you</span>
+            <span class="eyebrow" data-index="04">How it works</span>
             <h2>A clear path from first call to parts on your floor.</h2>
           </div>
-          <p class="lead">
-            No maze. We open your account carefully, match the part correctly, and deliver with the urgency your bay deserves.
-          </p>
         </div>
       </div>
       <div class="path reveal">
         <article>
+          <span class="step-icon" aria-hidden="true">＋</span>
           <span class="num">01</span>
           <h3>Tell us about your shop</h3>
-          <p>Share how you buy and what you need most. We set up a wholesale account that fits your rhythm.</p>
+          <p>We set up an account around your shop.</p>
         </article>
         <article>
+          <span class="step-icon" aria-hidden="true">✓</span>
           <span class="num">02</span>
           <h3>Get the right part</h3>
-          <p>Use our catalogue and team to land the correct fit the first time — fewer returns, fewer callbacks.</p>
+          <p>Our team helps confirm the correct fit.</p>
         </article>
         <article>
+          <span class="step-icon" aria-hidden="true">→</span>
           <span class="num">03</span>
           <h3>Receive with confidence</h3>
-          <p>New clients get free delivery on the first order. Then we keep the cadence steady as you grow with us.</p>
+          <p>Your first delivery is free.</p>
         </article>
       </div>
     </section>
 
     <section class="success" id="success">
       <div class="wrap--offset reveal">
-        <span class="eyebrow">When it works</span>
+        <span class="eyebrow" data-index="05">The outcome</span>
         <h2>Success looks like a quieter morning and a fuller day.</h2>
         <p class="lead">
-          Not just a lower line on an invoice — a shop where techs stay on the vehicle and advisors can sell the next job with confidence.
-        </p>
-        <p class="success-story">
-          Your team stops hunting parts. Customers get their keys back on schedule. And you finally have a wholesale partner who treats delivery like a promise, not a perk.
+          Techs stay working. Customers get their keys on time.
         </p>
         <div class="stats">
           <div>
@@ -1079,15 +1601,23 @@
 
     <section class="reviews" id="reviews">
       <div class="wrap--narrow reveal">
-        <span class="eyebrow">Results &amp; reviews</span>
+        <span class="eyebrow" data-index="06">Dealer stories</span>
         <h2>What dealers say when the waiting stops.</h2>
         <div class="quotes">
           <blockquote>
-            “We were losing half-days to late deliveries. APT opened our account fast — and the first order arrived free, on time. The bay felt different that week.”
+            <div class="quote-head">
+              <span class="quote-avatar" aria-hidden="true">SM</span>
+              <span class="quote-stars" aria-label="5 out of 5 stars">★★★★★</span>
+            </div>
+            “APT opened our account fast, and the first order arrived free and on time.”
             <cite>Service manager · Metro Vancouver dealer</cite>
           </blockquote>
           <blockquote>
-            “They care about getting it right. That sounds simple until you’ve worked with suppliers who don’t.”
+            <div class="quote-head">
+              <span class="quote-avatar quote-avatar--alt" aria-hidden="true">PL</span>
+              <span class="quote-stars" aria-label="5 out of 5 stars">★★★★★</span>
+            </div>
+            “They care about getting it right the first time.”
             <cite>Parts lead · Independent repair group</cite>
           </blockquote>
         </div>
@@ -1096,10 +1626,10 @@
 
     <section class="offer" id="offer">
       <div class="offer-band reveal">
-        <span class="eyebrow">New dealer offer</span>
+        <span class="eyebrow" data-index="07">Next step</span>
         <h2>Free delivery on your first order.</h2>
         <p class="lead">
-          Open a new wholesale account and we’ll cover delivery on your first order — so you can feel the difference before you commit long term.
+          Open an account and we’ll cover your first delivery.
         </p>
         <div class="offer-actions">
           <a class="btn btn--red" href="#apply">Request your account</a>
@@ -1115,7 +1645,7 @@
 
     <footer>
       <div class="wrap">
-        <strong>APT Auto Parts</strong> · Burnaby, BC · Quality &amp; Service, Exceeding your Expectations.
+        <strong>APT Auto Parts</strong> · Burnaby, BC · Wholesale support for busy shops.
       </div>
     </footer>
 
@@ -1131,7 +1661,13 @@
         },
         { threshold: 0.14, rootMargin: "0px 0px -6% 0px" }
       );
-      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+      document.querySelectorAll(".reveal").forEach((el, index) => {
+        el.style.setProperty("--reveal-delay", `${Math.min(index % 3, 2) * 70}ms`);
+        el.querySelectorAll(".stagger-child").forEach((child, childIndex) => {
+          child.style.setProperty("--child-delay", `${140 + childIndex * 110}ms`);
+        });
+        observer.observe(el);
+      });
 
       const form = document.getElementById("dealerForm");
       const success = document.getElementById("formSuccess");
