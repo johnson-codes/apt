@@ -1629,8 +1629,37 @@
       }
 
       .logo-rail { box-shadow: 0 12px 35px rgba(8,37,91,.07); }
-      .struggle__copy { background: linear-gradient(145deg,#fff 0%,#f8faff 100%); }
+      .struggle {
+        width: min(1180px,calc(100% - 3rem));
+        min-height:0;
+        margin-inline:auto;
+        padding-block:clamp(3.5rem,6vw,5.5rem);
+        gap:clamp(1.5rem,3vw,3rem);
+        align-items:stretch;
+        background:transparent;
+      }
+      .struggle__copy {
+        justify-content:flex-start;
+        padding:0;
+        background:transparent;
+      }
+      .struggle__visual {
+        aspect-ratio:16 / 9;
+        min-height:0;
+        align-self:start;
+        border:1px solid rgba(8,37,91,.12);
+        border-radius:var(--radius-md);
+        box-shadow:var(--shadow-md);
+      }
       .pain p { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+      @media (min-width:961px) {
+        .struggle__copy .wrap-local {
+          width: 100%;
+          max-width: 34rem;
+          margin: 0;
+          text-align: left;
+        }
+      }
 
       .who-points > div {
         border-radius: var(--radius-sm);
@@ -1667,6 +1696,11 @@
 
       @media (max-width:960px) {
         .hero { height:auto; min-height:0; }
+        .struggle {
+          width:min(100% - 2rem,720px);
+          padding-block:3rem;
+          gap:2rem;
+        }
         .struggle__copy { align-items:flex-start; }
         .struggle__copy .wrap-local {
           width: 100%;
@@ -1679,14 +1713,15 @@
         .team-card { grid-template-columns: 220px 1fr; }
         .team-card__body { min-height:300px; }
         .team-photo { min-height: 300px; aspect-ratio:auto; }
+        .struggle__visual { min-height:0; aspect-ratio:16 / 9; order:0; }
         .path article { min-height:0; }
       }
       @media (max-width:640px) {
         .hero__content { padding-top: 6.5rem; }
         .hero h1 { font-size: clamp(2.65rem,13vw,3.65rem); }
         section:not(.hero):not(.logo-rail) h2 { font-size: clamp(2rem,10vw,2.7rem); }
-        .struggle__visual { min-height:260px; }
-        .struggle__copy { padding:3rem 1rem; }
+        .struggle__visual { min-height:0; aspect-ratio:16 / 9; }
+        .struggle__copy { padding:0; }
         .team-card { grid-template-columns:1fr; }
         .team-card__body { min-height:0; }
         .team-photo { min-height:0; aspect-ratio:4 / 3; }
@@ -1823,7 +1858,7 @@
         </div>
       </div>
       <div class="struggle__visual reveal" aria-hidden="true">
-        <img src="assets/bay-work.jpg" alt="" />
+        <img src="assets/problem-shop.jpg" alt="" />
       </div>
     </section>
 
